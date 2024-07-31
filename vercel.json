@@ -11,6 +11,14 @@
       "src": "/(.*)",
       "dest": "/src/index.js"
     }
-  ]
+  ],
+   "functions": {
+    "/src/index.js": {
+      "maxDuration": 30 // This function can run for a maximum of 30 seconds
+    },
+    "src/*.js": {
+      "maxDuration": 30 // These functions can run for a maximum of 15 seconds
+    }
+  }
 }
 
