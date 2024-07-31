@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npx nodemon src/index.js"
+    "start": "node src/index.js"
   },
   "author": "SRC team (Strivers)",
   "license": "ISC",
@@ -25,7 +25,8 @@
     "mongoose": "^8.4.4",
     "multer": "^1.4.5-lts.1",
     "nodemailer": "^6.9.14",
-    "nodemon": "^3.1.4"
+    "nodemon": "^3.1.4",
+    "vercel": "^35.2.2"
   },
   "keywords": []
 }
