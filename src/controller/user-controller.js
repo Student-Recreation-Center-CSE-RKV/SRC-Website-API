@@ -30,7 +30,6 @@ const signup = async (req, res) => {
   }
 };
 
-// Getting user by email
 const getUserByEmail = async (req, res, next) => {
   try {
     const email = req.params.email;
@@ -41,50 +40,11 @@ const getUserByEmail = async (req, res, next) => {
         .json({ message: "User not found" });
     }
 
-const { StatusCodes } = require('http-status-codes'); 
-
-// User signup controller
-const signup = async (req, res) => {
-    try {
-        const user = await userService.signup({
-            email: req.body.email,
-            password: req.body.password,  
-            name: req.body.name,
-            role:req.body.role
-        });
-        return res.status(201).json({
-            success: true,
-            data: user,
-            message: "Successfully created a new user",
-            err: {}
-        });
-    } catch (error) {
-        const statusCode=error.statusCode || 500;
-        return res.status(statusCode).json({
-            success: false,
-            data: {},
-            message:error.message,
-            err: error.name
-        });
-    }
-}
-const getUserByEmail = async (req, res, next) => {
-  try {
-    const email = req.params.email;
-    const user = await userService.getUserByEmail(email);
-    if (!user) {
-      return res.status(StatusCodes.NOT_FOUND).json({ message: 'User not found' });
-    }
-
     res.status(StatusCodes.OK).json(user);
   } catch (error) {
     next(error);
   }
-
 };
-
-}
-
 
 // User login controller
 const login = async (req, res) => {
@@ -227,17 +187,15 @@ const updateDetails = async (req, res) => {
     });
   }
 };
+
 module.exports = {
   signup,
   login,
   verify,
   passwordResetLink,
   updatePassword,
-
   getUserByEmail,
   updateDetails,
   updateRole,
-
-  getUserByEmail
-
+  getUserByEmail,
 };
