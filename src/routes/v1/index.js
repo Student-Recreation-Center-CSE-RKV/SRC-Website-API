@@ -35,38 +35,6 @@ const {
   authorizeAdmin,
 } = require("../../middlewares/authorization.js");
 
-// const multer = require('multer');
-// const storage = multer.diskStorage({
-//   destination: function (req, file, cb) {
-//     cb(null, 'public/images');
-//   },
-//   filename: function (req, file, cb) {
-//     cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname);
-//   },
-// });
-// const upload = multer({ storage: storage });
-const multer = require("multer");
-const upload = multer({ dest: "uploads/" }); // Configure multer as needed
-
-const {officialController,domainController,resourceController,projectController,contactForumController,NewsController,TestimonialController,UserProfileController,EventController} = require('../../controller/index.js');
-const checkDuplicateEmail = require('../../middlewares/checkDuplicateEmail');
-const { signup,login,verify,passwordResetLink,updatePassword, getUserByEmail} =require('../../controller/user-controller.js');
-const {UserService}=require('../../services/index.js');
-const {validateUserAuth,validateisAdminId}=require('../../middlewares/auth-request-validators.js');
-const { authenticate,authorizeAdmin } = require('../../middlewares/authorization.js');
-const multer = require('multer');
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, 'public/images');
-  },
-  filename: function (req, file, cb) {
-    cb(null, file.fieldname + '-' + Date.now() + '-' + file.originalname);
-  },
-});
-const upload = multer({ storage: storage });
-
-
-
 //leaderboard........
 
 // router.post('/leaderboard', (req, res) => LeaderboardController.createLeaderboardEntry(req, res));
@@ -113,7 +81,11 @@ router.put(
   TestimonialController.updateTestimonial
 );
 
-router.post("/testimonials/create", upload.single('photo'),TestimonialController.createTestimonial);
+router.post(
+  "/testimonials/create",
+  upload.single("photo"),
+  TestimonialController.createTestimonial
+);
 // router.post("/testimonials/create",TestimonialController.createTestimonial);
 router.put("/testimonials/update/:id", TestimonialController.updateTestimonial);
 
@@ -182,13 +154,12 @@ router.get("/email/:email", authenticate, authorizeAdmin, getUserByEmail);
 router.put("/update/details/:token", updateDetails);
 router.put("/update/role/:id", authenticate, authorizeAdmin, updateRole);
 
-router.post('/signup',signup);
-router.post('/login',validateUserAuth,login);
-router.get('/verify/:token',verify);
-router.get('/forgot/password',passwordResetLink);
-router.patch('/reset/password/:token',updatePassword);
-router.get('/email/:email',getUserByEmail);
-
+router.post("/signup", signup);
+router.post("/login", validateUserAuth, login);
+router.get("/verify/:token", verify);
+router.get("/forgot/password", passwordResetLink);
+router.patch("/reset/password/:token", updatePassword);
+router.get("/email/:email", getUserByEmail);
 
 //Officials Routes:
 router.post(
