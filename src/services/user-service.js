@@ -22,7 +22,7 @@ class UserService {
         return { message: "Verification link sent to your email" };
       } else if (isExists.isVerified) {
         throw new ClientError(
-          "Duplicate USer",
+          "User Already Exists",
           "Try with another Email",
           "User already exists",
           StatusCodes.BAD_REQUEST
