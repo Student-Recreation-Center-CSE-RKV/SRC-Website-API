@@ -12,9 +12,9 @@ const transporter = nodemailer.createTransport({
 async function sendVerificationEmail(to, token, flag) {
   var url = "";
   if (flag == "verify") {
-    url = `https://src-website-api.onrender.com/api/v1/verify/${token}`;
+    url = `https://rgukt-rkv-cse-src.vercel.app/user/verify/${token}`;
   } else {
-    url = `https://src-website-api.onrender.com/api/v1/reset/password/${token}`;
+    url = `https://rgukt-rkv-cse-src.vercel.app/Auth/reset/password/${token}`;
   }
 
     const mailOptions = {
